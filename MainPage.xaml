@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:config="clr-namespace:Regex_Site_Blocker_App.Config"
+             x:Class="Regex_Site_Blocker_App.MainPage"
+             x:DataType="config:AppConfig"
+             Title="설정">
+    <Grid x:Name="PageRoot" SizeChanged="OnPageSizeChanged">
+    <Grid Padding="24" RowDefinitions="Auto,Auto,*" RowSpacing="24">
+        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="16">
+            <Grid.IsVisible>
+                <OnPlatform x:TypeArguments="x:Boolean" Default="True">
+                    <On Platform="Android,iOS" Value="False" />
+                </OnPlatform>
+            </Grid.IsVisible>
+            <Label Text="시스템 시작 시 자동 실행" VerticalOptions="Center" />
+            <Switch Grid.Column="1" IsToggled="{Binding StartProgram, Mode=TwoWay}"
+                    HorizontalOptions="End" SemanticProperties.Description="시스템 시작 시 자동 실행" />
+        </Grid>
+        <Label Grid.Row="1" Text="접속 제한 사이트 목록" FontSize="20"
+               FontAttributes="Bold" SemanticProperties.HeadingLevel="Level1" />
+        <ScrollView Grid.Row="2" Scrolled="OnRulesScrolled">
+          <VerticalStackLayout Spacing="16">
+            <VerticalStackLayout BindableLayout.ItemsSource="{Binding Blacklist}" Spacing="12">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="config:BlacklistRule">
+                    <Grid ColumnDefinitions="*,Auto,Auto" RowDefinitions="Auto,Auto"
+                          ColumnSpacing="16" Padding="0,4">
+                        <Label Text="{Binding Pattern}" VerticalOptions="Center" LineBreakMode="CharacterWrap" />
+                        <Switch Grid.Column="1" IsToggled="{Binding Enable, Mode=TwoWay}"
+                                VerticalOptions="Center" SemanticProperties.Description="규칙 활성화" />
+                        <ImageButton Grid.Column="2" Source="rule_menu.png"
+                                     WidthRequest="44" HeightRequest="44" Padding="10"
+                                     BackgroundColor="Transparent" VerticalOptions="Center"
+                                     Clicked="OnRuleMenuClicked" SemanticProperties.Description="규칙 메뉴"
+                                     ToolTipProperties.Text="규칙 메뉴" />
+                        <BoxView Grid.Row="1" Grid.ColumnSpan="3"
+                                 HeightRequest="1" Margin="0,8,0,0"
+                                 HorizontalOptions="Fill" InputTransparent="True"
+                                 Color="{AppThemeBinding Light=#D0D0D0, Dark=#606060}" />
+                    </Grid>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="16" Padding="0,16,0,4">
+                    <Entry x:Name="NewRuleEntry" Placeholder="URL (도메인 정규식)"
+                           IsTextPredictionEnabled="False" IsSpellCheckEnabled="False"
+                           Completed="OnAddRuleClicked" SemanticProperties.Description="새 접속 제한 도메인 정규식" />
+                    <Button Grid.Column="1" Text="추가" Clicked="OnAddRuleClicked" />
+                </Grid>
+          </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+    <AbsoluteLayout x:Name="MenuOverlay" IsVisible="False" ZIndex="10">
+        <Grid BackgroundColor="Transparent" AbsoluteLayout.LayoutBounds="0,0,1,1"
+              AbsoluteLayout.LayoutFlags="All">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnMenuDismissed" />
+            </Grid.GestureRecognizers>
+        </Grid>
+        <Border x:Name="RuleMenu" Padding="4" StrokeShape="RoundRectangle 8"
+                BackgroundColor="{AppThemeBinding Light=White, Dark=#242424}"
+                Stroke="{AppThemeBinding Light=#D0D0D0, Dark=#606060}">
+            <VerticalStackLayout Spacing="4">
+                <Button Text="삭제" ImageSource="delete_rule.png" ContentLayout="Left,10" HeightRequest="44"
+                        BackgroundColor="Transparent" TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                        Clicked="OnDeleteMenuClicked" />
+                <Button Text="수정" ImageSource="edit_rule.png" ContentLayout="Left,10" HeightRequest="44"
+                        BackgroundColor="Transparent" TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                        Clicked="OnEditMenuClicked" />
+            </VerticalStackLayout>
+        </Border>
+    </AbsoluteLayout>
+    </Grid>
+</ContentPage>

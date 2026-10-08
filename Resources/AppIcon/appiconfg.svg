@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="456" height="456" viewBox="0 0 456 456" xmlns="http://www.w3.org/2000/svg">
+    <!-- Font-independent .* symbol, centered on the shield. -->
+    <g transform="translate(228 228) scale(1.5) translate(-228 -228)">
+    <circle cx="170" cy="266" r="20" fill="#FFFFFF" />
+    <path d="M 258,170 L 258,266 M 216.43,194 L 299.57,242 M 216.43,242 L 299.57,194"
+          fill="none" stroke="#FFFFFF" stroke-width="24" stroke-linecap="round" />
+    </g>
+</svg>

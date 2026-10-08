@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><TargetFramework>net10.0-windows10.0.19041.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><IsPackable>false</IsPackable></PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" PrivateAssets="all" />
+    <PackageReference Include="YamlDotNet" Version="16.3.0" />
+    <PackageReference Include="FlaUI.UIA3" Version="5.0.0" />
+    <Compile Include="../../Config/*.cs" Link="Config/%(Filename)%(Extension)" />
+    <Compile Include="../../Services/IConfigSource.cs" Link="Services/IConfigSource.cs" />
+    <Compile Include="../../Services/BrowserBlocking/*.cs" Link="BrowserBlocking/%(Filename)%(Extension)" />
+    <Compile Include="../../Platforms/Windows/BrowserAutomationAdapter.cs" Link="Windows/BrowserAutomationAdapter.cs" />
+    <Compile Include="../../Platforms/Windows/BrowserBlockingService.cs" Link="Windows/BrowserBlockingService.cs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="456" height="456" viewBox="0 0 456 456" xmlns="http://www.w3.org/2000/svg">
+    <path transform="translate(228 228) scale(1.34) translate(-228 -228)"
+          d="M 228,64 C 184,92 136,108 88,116 L 88,222 C 88,300 140,356 228,392 C 316,356 368,300 368,222 L 368,116 C 320,108 272,92 228,64 Z"
+          fill="#087F8C" stroke="#7DE2D1" stroke-width="12" stroke-linejoin="round" />
+</svg>
