@@ -11,5 +11,7 @@
     <Compile Include="../../Services/BrowserBlocking/*.cs" Link="BrowserBlocking/%(Filename)%(Extension)" />
     <Compile Include="../../Platforms/Windows/BrowserAutomationAdapter.cs" Link="Windows/BrowserAutomationAdapter.cs" />
     <Compile Include="../../Platforms/Windows/BrowserBlockingService.cs" Link="Windows/BrowserBlockingService.cs" />
+    <Compile Include="../../Platforms/Windows/StartupRegistrationService.cs" Link="Windows/StartupRegistrationService.cs" />
+    <Compile Include="../../Platforms/Windows/WindowsStartupTaskScheduler.cs" Link="Windows/WindowsStartupTaskScheduler.cs" />
   </ItemGroup>
 </Project>
